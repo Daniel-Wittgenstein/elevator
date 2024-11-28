@@ -8,6 +8,12 @@ window.doCommand = async(c) => {
         return
     }
     
+    const resB = getLocationBasedStandardResponse(c)
+    if (resB) {
+        await say(resB)
+        return
+    }
+
     const res = getGenericVerbMessage(c)
     if (res) {
         await say(res)
@@ -17,6 +23,10 @@ window.doCommand = async(c) => {
     await displayDefaultMessage(c)
 }
 
+function getLocationBasedStandardResponse(c) {
+    if (!locationBasedStandardResponses[world.room]) return null
+    return locationBasedStandardResponses[world.room][c]
+}
 
 async function displayDefaultMessage(c) {
     await say(story.iDoNotUnderstand.replaceAll("%", c))
