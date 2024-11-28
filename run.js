@@ -2,14 +2,21 @@
 let messageBox
 let canvas
 let ctx
+let inputBox
 
 window.onload = startApp
 
 function startApp() {
     messageBox = document.getElementById("message")
     canvas = document.getElementById('mainCanvas')
+    inputBox = document.getElementById("inputBox")
     ctx = canvas.getContext('2d')
     renderImage("floor")
+    inputBox.focus()
+    inputBox.addEventListener('blur', () => {
+        setTimeout (() => inputBox.focus(), 100)
+    })
+      
 }
 
 function renderImage(imageId) {
