@@ -59,7 +59,7 @@ function renderImage(imageId) {
 async function say(text) {
     text = text.toUpperCase()
     for (let i = 0; i < text.length; i++) {
-        let delay = 0
+        let delay = 25
         if (text[i] === "#") {
             messageBox.innerHTML += "<br>"
             continue

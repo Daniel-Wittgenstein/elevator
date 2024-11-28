@@ -33,3 +33,8 @@ function alias(wordStr, resolvesTo) {
         aliases[word] = resolvesTo
     }
 }
+
+function isAny(txt, wordStr) {
+    const words = wordStr.split(",").map(n => n.trim()).filter(n => n)
+    return words.includes(txt)
+}
