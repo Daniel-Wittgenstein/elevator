@@ -16,7 +16,25 @@ function startApp() {
     inputBox.addEventListener('blur', () => {
         setTimeout (() => inputBox.focus(), 100)
     })
-      
+
+    inputBox.addEventListener('keydown', (event) => {
+        if (event.key === ' ') {
+          event.preventDefault()
+        }
+        if (event.key === 'Enter') {
+            tempVariable = inputBox.value
+            submitPlayerCommand(tempVariable)
+            inputBox.value = ''
+          }
+    })
+}
+
+
+function submitPlayerCommand(str) {
+    str = str.trim()
+    str = str.replace(/[^a-z0-9]/gi, '');
+    str = str.toLowerCase()
+    console.log(str)
 }
 
 function renderImage(imageId) {
