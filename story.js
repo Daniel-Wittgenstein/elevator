@@ -9,7 +9,7 @@ story = {
 }
 
 genericVerbMessages = {
-    fly: `You flap your arms, but nothing happens.`,,
+    fly: `You flap your arms, but nothing happens.`,
     jump: `You jump on the spot.`,
     look: "Nothing special to see.",
 }
