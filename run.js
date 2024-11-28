@@ -30,11 +30,12 @@ function startApp() {
 }
 
 
-function submitPlayerCommand(str) {
+async function submitPlayerCommand(str) {
     str = str.trim()
     str = str.replace(/[^a-z0-9]/gi, '');
     str = str.toLowerCase()
     console.log(str)
+    await say(str)
 }
 
 function renderImage(imageId) {
@@ -45,3 +46,20 @@ function renderImage(imageId) {
       console.error(`Image with id "${imageId}" not found.`)
     }
 }
+
+async function say(text) {
+    text = text.toUpperCase()
+    for (let i = 0; i < text.length; i++) {
+        let delay = 50
+        if (text[i] === "#") {
+            messageBox.innerHTML += "<br>"
+            continue
+        } else {
+            messageBox.innerHTML += text[i];
+        }
+        await new Promise(resolve => setTimeout(resolve, delay));
+    }
+    messageBox.innerHTML += "<br>"
+}
+
+  

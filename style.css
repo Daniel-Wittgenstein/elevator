@@ -26,6 +26,8 @@ body {
     left: 0;
     padding: 10px;
     background-color: #000;
+    color: #00b7b7;
+    font-size: 3vw;
     width: 100%;
     box-sizing: border-box;
     text-align: left;
@@ -36,7 +38,6 @@ body {
   #message {
     font-family: monospace;
     color: white;
-    font-size: 3vw;
     margin-bottom: 5px;
   }
   
