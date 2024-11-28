@@ -9,13 +9,14 @@ story = {
 }
 
 genericVerbMessages = {
-    fly: [`You flap your arms, but nothing happens.`, `You try, but it won't work.`],
+    fly: `You flap your arms, but nothing happens.`,,
     jump: `You jump on the spot.`,
+    look: "Nothing special to see.",
 }
 
-multiNope(`There's nothing to % here, I'm afraid.`, `open, close, push, press, use`)
+multiNope(`There's nothing to % here, I'm afraid.`, `open, close, push, press, use, take, uproot`)
 
-alias("grab, nimm", "take")
+alias("grab, pick", "take")
 
 loc("floor3", `
 
@@ -28,6 +29,11 @@ loc("floor3", `
 function handlePlayerCommand(c) {
     if (world.room === "floor3") {
  
+        if (c === "take" || c === "pull" || c === "uproot") {
+            renderImage("floor-no-tree")
+            return `You pull the tree out of the vase, uprooting it. Brutal!`
+        }
+
         if (c === "push" || c === "press") {
             renderImage("elevator")
             world.room = "elevator"
