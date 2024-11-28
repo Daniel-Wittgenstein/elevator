@@ -39,6 +39,9 @@ async function submitPlayerCommand(str) {
     str = str.trim()
     str = str.replace(/[^a-z0-9]/gi, '');
     str = str.toLowerCase()
+    if (aliases[str]) {
+        str = aliases[str]
+    }
     cls()
     await say("> " + str)
     await doCommand(str)

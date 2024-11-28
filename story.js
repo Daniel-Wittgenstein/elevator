@@ -15,6 +15,8 @@ genericVerbMessages = {
 
 multiNope(`There's nothing to % here, I'm afraid.`, `open, close, push, press, use`)
 
+alias("grab, nimm", "take")
+
 loc("floor3", `
 
     open: You try to open the elevator door, but of course you are too weak for that.
@@ -25,11 +27,13 @@ loc("floor3", `
 
 function handlePlayerCommand(c) {
     if (world.room === "floor3") {
+ 
         if (c === "push" || c === "press") {
             renderImage("elevator")
             world.room = "elevator"
             return "You push the button. # The elevator arrives and you enter."
         }
+
     }
 
     return null

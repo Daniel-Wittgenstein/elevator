@@ -24,3 +24,12 @@ function loc(location, str) {
         locationBasedStandardResponses[location][verb] = text
     }
 }
+
+aliases = {}
+
+function alias(wordStr, resolvesTo) {
+    const words = wordStr.split(",").map(n => n.trim()).filter(n => n)
+    for (const word of words) {
+        aliases[word] = resolvesTo
+    }
+}
