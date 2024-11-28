@@ -10,6 +10,7 @@ function startApp() {
     messageBox = document.getElementById("message")
     canvas = document.getElementById('mainCanvas')
     inputBox = document.getElementById("inputBox")
+    inputBox.value = ""
     ctx = canvas.getContext('2d')
     renderImage("floor")
     inputBox.focus()
@@ -17,14 +18,20 @@ function startApp() {
         setTimeout (() => inputBox.focus(), 100)
     })
 
-    inputBox.addEventListener('keydown', (event) => {
+    inputBox.addEventListener('keydown', async (event) => {
         if (event.key === ' ') {
-          event.preventDefault()
+          inputBox.value = ''
+          blockInput()
+          cls()
+          await say("one word is enough!#tell me what you want to do!")
+          unblockInput()
         }
         if (event.key === 'Enter') {
             tempVariable = inputBox.value
-            submitPlayerCommand(tempVariable)
+            blockInput()
+            await submitPlayerCommand(tempVariable)
             inputBox.value = ''
+            unblockInput()
           }
     })
 }
@@ -34,8 +41,8 @@ async function submitPlayerCommand(str) {
     str = str.trim()
     str = str.replace(/[^a-z0-9]/gi, '');
     str = str.toLowerCase()
-    console.log(str)
-    await say(str)
+    cls()
+    await say("> " + str)
 }
 
 function renderImage(imageId) {
@@ -62,4 +69,17 @@ async function say(text) {
     messageBox.innerHTML += "<br>"
 }
 
-  
+function cls() {
+    messageBox.innerHTML = ""
+}
+
+function blockInput() {
+    inputBox.disabled = true
+    document.getElementById("whole-prompt").style.visibility = "hidden"
+}
+
+function unblockInput() {
+    inputBox.disabled = false
+    document.getElementById("whole-prompt").style.visibility = "visible"
+    inputBox.focus()
+}
