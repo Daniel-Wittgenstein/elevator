@@ -19,14 +19,7 @@ function startApp() {
     })
 
     inputBox.addEventListener('keydown', async (event) => {
-        if (event.key === ' ') {
-          inputBox.value = ''
-          blockInput()
-          cls()
-          await say("one word is enough!#tell me what you want to do!")
-          unblockInput()
-        }
-        if (event.key === 'Enter') {
+        if (event.key === 'Enter' || event.key === ' ') {
             tempVariable = inputBox.value
             blockInput()
             await submitPlayerCommand(tempVariable)
