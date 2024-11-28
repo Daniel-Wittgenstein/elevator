@@ -41,6 +41,7 @@ async function submitPlayerCommand(str) {
     str = str.toLowerCase()
     cls()
     await say("> " + str)
+    await doCommand(str)
 }
 
 function renderImage(imageId) {
@@ -81,3 +82,6 @@ function unblockInput() {
     document.getElementById("whole-prompt").style.visibility = "visible"
     inputBox.focus()
 }
+
+window.renderImage = renderImage
+window.say = say
