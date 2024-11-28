@@ -1,6 +1,6 @@
 
 state = {
-
+    room: "floor3",
 }
 
 story = {
@@ -9,10 +9,13 @@ story = {
 }
 
 genericVerbMessages = {
-    open: `There's nothing to open here, I'm afraid.`,
     fly: [`You flap your arms, but nothing happens.`, `You try, but it won't work.`],
-    jump: () => {return `You jump on the spot.`}
+    jump: `You jump on the spot.`,
 }
+
+multiNope(`There's nothing to % here, I'm afraid.`, `open, close, push, press, use`)
+
+
 
 function handlePlayerCommand(c) {
     return null
