@@ -6,11 +6,13 @@ let inputBox
 
 window.onload = startApp
 
-function startApp() {
+async function startApp() {
     messageBox = document.getElementById("message")
     canvas = document.getElementById('mainCanvas')
     inputBox = document.getElementById("inputBox")
     inputBox.value = ""
+    blockInput()
+
     ctx = canvas.getContext('2d')
     renderImage("floor")
     inputBox.focus()
@@ -27,6 +29,9 @@ function startApp() {
             unblockInput()
           }
     })
+
+    await say (story.openingText)
+    unblockInput()
 }
 
 
@@ -50,7 +55,7 @@ function renderImage(imageId) {
 async function say(text) {
     text = text.toUpperCase()
     for (let i = 0; i < text.length; i++) {
-        let delay = 50
+        let delay = 0
         if (text[i] === "#") {
             messageBox.innerHTML += "<br>"
             continue
