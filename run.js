@@ -1,9 +1,22 @@
-// Placeholder for canvas logic
-const canvas = document.getElementById('mainCanvas')
-const ctx = canvas.getContext('2d')
 
-ctx.fillStyle = 'white'
-ctx.fillRect(0, 0, canvas.width, canvas.height)
-ctx.fillStyle = 'black'
-ctx.font = '20px Arial'
-ctx.fillText('Canvas Loaded', 10, 50)
+let messageBox
+let canvas
+let ctx
+
+window.onload = startApp
+
+function startApp() {
+    messageBox = document.getElementById("message")
+    canvas = document.getElementById('mainCanvas')
+    ctx = canvas.getContext('2d')
+    renderImage("floor")
+}
+
+function renderImage(imageId) {
+    const image = document.getElementById(imageId)
+    if (image) {
+      ctx.drawImage(image, 0, 0)
+    } else {
+      console.error(`Image with id "${imageId}" not found.`)
+    }
+}
